@@ -1,0 +1,17 @@
+- name: Install tomcat9
+  hosts: all
+  tasks:
+     - name: install tomcat9
+       apt: 
+         name: tomcat9
+         state: present
+         update_cache: yes
+     - name: install tomcat-admin
+       apt:
+         name: tomcat9-admin
+         state: present
+     - name: restart tomcat
+       service:
+          name: tomcat9
+          state: restarted
+...          
