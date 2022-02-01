@@ -1,0 +1,13 @@
+- name: Creating user 
+  hosts: all
+  tasks:
+      - name: Provide user name
+        user:
+           name: Arun
+           password: arunreddy
+           uid: 10000
+           gid: 20000
+           home: /tmp/ubuntu
+           shell: /bin/bash
+           comment: "Created using ansible playbook"
+...
