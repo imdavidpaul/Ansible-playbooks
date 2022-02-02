@@ -1,0 +1,16 @@
+- name: Install and configure apache2 software
+  hosts: all 
+  tasks: 
+   - name: Install apache2
+     apt: 
+      name: apache2
+      state: present
+      update_cache: yes
+   - name: copy the index.yml file
+     copy:
+      dest: /var/www/html/index.html 
+      content: Welcome David
+   - name: Restart apache2
+     service:
+      state: restarted
+
