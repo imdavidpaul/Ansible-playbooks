@@ -1,0 +1,23 @@
+---
+- name: create multiple users and copy files into user home dir
+  hosts: all
+  tasks:
+       - name: Install multiple users
+         user:
+            name: "{{item.name}}"
+            password: "{{item.pass}}"
+            home: "{{item.home}}"
+         with_items:
+             - {name: arun, pass: arun, home: /home/arun}
+             - {name: madhur,pass: madhur, home: /home/madhur}
+             - {name: rohith,pass: rohith, home: /home/rohith}
+       - name: create file in user home direcrty
+         file:
+            name: "{{item.name}}"
+            state: "{{item.state}}"
+         with_items:
+             - {name: /tmp/file1, state: touch}
+             - {name: /tmp/file2, state: directory}
+             - {name: /home/arun/dummy, state: touch}
+...               
+       
